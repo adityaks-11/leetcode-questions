@@ -1,0 +1,131 @@
+/*You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+ 
+
+Example 1:
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].*/
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int c,p,r,k=0;
+        int n=digits.size();
+        int ok=n-1;
+        int s=0;
+        for(int i=0;i<n;i++){
+            c=digits.at(i);
+            cout<<c<<endl;
+            s=s+(c*(pow(10,ok)));
+            cout<<s<<endl;
+            ok--;
+        }
+        cout<<s;
+        s=s+1;
+        p=s;
+        while(p!=0){
+            p=p/10;
+            k++;
+        }
+        if(k>n){
+            r=s%10;
+            digits.push_back(r);
+            s=s/10;
+            for(int i=n-1;i>=0;i--){
+                r=s%10;
+                
+                digits.at(i)=r;
+                s=s/10;
+            }
+        }
+
+        else{
+            for(int i=n-1;i>=0;i--){
+                r=s%10;
+                digits.at(i)=r;
+                s=s/10;
+            }
+        }
+        return{digits};
+
+    }
+};
+
+//runtime 3ms
+
+
+
+
+//approach 2;
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        
+        int n=digits.size();
+        int c=n-1,d=0;
+        if(digits.at(c)==9){
+            c--;
+            while(c!=-1){
+                if(digits.at(c)==9){
+                    c--;
+                    d++;
+
+
+                }
+                else{
+                    digits.at(c)=digits.at(c)+1;
+                    digits.at(c+1)=0;
+                    break;
+
+                }
+            }
+            if(d==n-1){
+                digits.at(0)=1;
+                for(int i=1;i<n;i++){
+                    digits.at(i)=0;
+                }
+                digits.push_back(0);
+            }
+
+            }
+
+        else{
+            digits.at(n-1)=digits.at(n-1)+1;
+        }
+        return{digits};
+        }
+
+
+
+    };
+
+//runtime 0ms;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
