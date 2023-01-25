@@ -89,7 +89,10 @@ public:
                 }
                 else{
                     digits.at(c)=digits.at(c)+1;
-                    digits.at(c+1)=0;
+                    c++;
+                    while(c<n){
+                    digits.at(c)=0;
+                    c++;}
                     break;
 
                 }
